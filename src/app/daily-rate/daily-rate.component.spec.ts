@@ -17,7 +17,7 @@ describe('DailyRateComponent', () => {
     fixture = TestBed.createComponent(DailyRateComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  });
+  });kkk
 
   it('should create', () => {
     expect(component).toBeTruthy();
