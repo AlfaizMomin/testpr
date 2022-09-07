@@ -15,7 +15,7 @@ export class AddcustomerComponent implements OnInit {
   search:any;
   data: any = [];
   constructor(private _add: FirebaseService,
-    private router: Router
+    private router: Router{
   ) { }
 
   ngOnInit(): void {
