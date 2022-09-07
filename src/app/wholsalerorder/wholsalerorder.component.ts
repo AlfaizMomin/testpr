@@ -10,6 +10,11 @@ import { FirebaseService } from '../firebase.service';
 export class WholsalerorderComponent implements OnInit {
   wholsalerform: any;
   data: any = [];
+  productNameList:any= [
+    {name:'Select Product'},{name:'Wing'},{name:'Leg Boneless'},{name:'Boiler'},{name:'Coldress'},{name:'Tanduri'},
+    {name:'Cury Cut'},{name:'Cut peace'},{name:'Leaver'},{name:'Skin'},{name:'Spcl Leg'},{name:'Live bird'},{name:'Egg'},{name:'Gavran'}
+
+  ];
   WholsalerNameList: any = [];
   myModel = {
     Weight: 0,
@@ -19,6 +24,11 @@ export class WholsalerorderComponent implements OnInit {
     balance: 0
   }
   image: any
+  selectedwholsaler:any;
+  orderDate:any
+  totalBalanceList:any = []
+  tempArray:any = [];
+  totalAmount:any
   constructor(private http: FirebaseService
 
   ) { }
@@ -37,6 +47,8 @@ export class WholsalerorderComponent implements OnInit {
       file: new FormControl('')
     })
     this.WholsalerName()
+    this.getWholsalerBalance
+    this.cal()
   }
   submit() {
     if (this.wholsalerform.valid) {
@@ -58,18 +70,34 @@ export class WholsalerorderComponent implements OnInit {
     this.myModel.balance = this.myModel.Total * 1 - this.myModel.paid * 1
   }
   WholsalerName() {
-    // this.http.showWholsaler().subscribe(
-    //   (Response)=>{
-    //     const name= JSON.stringify(Response)
-    //       this.WholsalerNameList = JSON.parse(name)
-    //     },
-
-    //     (err)=>console.log(err)
-    //   ) 
     this.http.getwholsaler().subscribe(
       (res)=>{
         this.WholsalerNameList = res
       }
     )
   }
+  selectedWholsaler(data:any){
+    this.selectedwholsaler = data.value
+    console.log(this.selectedwholsaler)
+    this.cal()
+  }
+
+  getWholsalerBalance() {
+    this.http.getOrderofWholsaler().subscribe(
+      (res) => {
+        this.totalBalanceList = res
+        this.tempArray = res
+      })
+  }
+
+  cal() {
+    let totalBalance = 0;
+    for (let item of this.totalBalanceList) {
+      if (item.name == this.selectedwholsaler.name) {
+      totalBalance += item['Balance'];
+    }
+  }
+    this.totalAmount = totalBalance
+    console.log(this.totalAmount)
+}
 }

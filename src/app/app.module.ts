@@ -13,7 +13,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CommonModule }   from '@angular/common';
+import { CommonModule, DatePipe }   from '@angular/common';
 import { AddcustomerComponent } from './addcustomer/addcustomer.component';
 import { ProductComponent } from './product/product.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -37,6 +37,19 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import { WholesalerOrderDetailComponent } from './wholesaler-order-detail/wholesaler-order-detail.component';
+import { TotalBalnceOfCustomerComponent } from './total-balnce-of-customer/total-balnce-of-customer.component';
+import { TestComponent } from './test/test.component';
+import { WholsalerTotalBalanceComponent } from './wholsaler-total-balance/wholsaler-total-balance.component';
+import { ProftLossComponent } from './proft-loss/proft-loss.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatCardModule} from '@angular/material/card';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import {MatExpansionModule} from '@angular/material/expansion';
+import { TimelineComponent } from './timeline/timeline.component';
 
 const firebaseConfig = {
   apiKey: "AIzaSyAULT8jgP2zMgs5dJVWvjd7LCLQYrxdYsQ",
@@ -67,6 +80,11 @@ const firebaseConfig = {
     PaymentOfWholesalerComponent,
     PaymentOfCustomerComponent,
     WholesalerOrderDetailComponent,
+    TotalBalnceOfCustomerComponent,
+    TestComponent,
+    WholsalerTotalBalanceComponent,
+    ProftLossComponent,
+    TimelineComponent,
   ],
   imports: [
     BrowserModule,
@@ -87,10 +105,19 @@ const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFirestoreModule, // firestore
     AngularFireAuthModule, // auth
-    AngularFireStorageModule // storage
-    
+    AngularFireStorageModule,// storage
+    MatCheckboxModule,
+    MatCardModule,
+    MatInputModule,
+    MatSnackBarModule,
+    MatDialogModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    CKEditorModule,
+    MatExpansionModule
   ],
-  providers: [],
+  
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
