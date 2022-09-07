@@ -19,6 +19,7 @@ export class AddcustomerComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    {
     this.showcustomers();
     this.addcustomer = new FormGroup({
 
